@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import { AppProviders } from '@/providers/app-providers';
+import { AppProviders } from '@/web/providers/app-providers';
 
 import type { Metadata, Viewport } from 'next';
 

@@ -1,4 +1,4 @@
-import { LoginView } from '@/features/auth/ui/login/view/login-view';
+import { LoginView } from '@/web/features/auth/ui/login/view/login-view';
 
 import type { Metadata } from 'next';
 

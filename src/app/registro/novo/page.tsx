@@ -1,4 +1,4 @@
-import { NovoRegistroView } from '@/features/registro-pensamento/ui/novo/view/novo-registro-view';
+import { NovoRegistroView } from '@/web/features/registro-pensamento/ui/novo/view/novo-registro-view';
 
 import type { Metadata } from 'next';
 

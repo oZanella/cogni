@@ -1,4 +1,4 @@
-import { CadastroView } from '@/features/auth/ui/cadastro/view/cadastro-view';
+import { CadastroView } from '@/web/features/auth/ui/cadastro/view/cadastro-view';
 
 import type { Metadata } from 'next';
 

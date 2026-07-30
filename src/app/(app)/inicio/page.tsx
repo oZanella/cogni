@@ -1,4 +1,4 @@
-import { InicioView } from '@/features/registro-pensamento/ui/inicio/view/inicio-view';
+import { InicioView } from '@/web/features/registro-pensamento/ui/inicio/view/inicio-view';
 
 import type { Metadata } from 'next';
 

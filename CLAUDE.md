@@ -47,45 +47,43 @@ npm run dev                     # inicia (porta 3010)
 
 ## Estrutura de Pastas
 
+Continua sendo **um único app Next.js** (sem servidor separado) — mas dentro de `src/` o código é
+separado por responsabilidade em `api/` (acesso a dados) e `web/` (interface). Duas pastas ficam
+fora dessa divisão porque o Next.js exige essa localização exata: `src/app/` (rotas do App Router)
+e `src/middleware.ts`.
+
 ```
 src/
-├── app/                      # Next.js App Router
-│   ├── entrar/, cadastro/    # rotas públicas de autenticação
-│   ├── (app)/                # rotas autenticadas com bottom nav (inicio, historico)
-│   ├── registro/novo/        # wizard de registro, tela cheia sem navegação
+├── app/                        # Next.js App Router (rotas/layouts — local fixo do framework)
+│   ├── entrar/, cadastro/      # rotas públicas de autenticação
+│   ├── (app)/                  # rotas autenticadas com bottom nav (inicio, historico)
+│   ├── registro/novo/          # wizard de registro, tela cheia sem navegação
 │   └── api/auth/[...nextauth]/
-├── features/                 # Módulos de funcionalidade
-│   ├── auth/
-│   └── registro-pensamento/
-├── components/
-│   ├── ui/                   # shadcn/ui (Radix)
-│   ├── layout/                # bottom-nav, etc.
-│   └── business/              # componentes de domínio reutilizáveis (RegistroCard)
-├── providers/                # QueryProvider, SessionProvider, ThemeProvider
-├── lib/                      # prisma.ts, auth.ts, utils.ts
-└── shared/                   # enums, enum-maps, schemas globais
-```
-
-## Padrão de Feature
-
-```
-<nome>/
-├── ui/
-│   └── <tela>/
-│       ├── view/              # Componente React da tela
-│       └── hooks/              # Hooks da tela (useForm, handlers)
-├── data/
-│   ├── actions/                # Server Actions ('use server') — acesso ao Prisma
-│   ├── hooks/                  # Hooks React Query (useQuery/useMutation) sobre as actions
-│   └── <feature>.keys.ts       # Query key factory
-└── shared/
-    ├── types/                  # Tipos TypeScript da feature
-    └── schemas/                 # Schemas Zod de validação
+├── middleware.ts                # local fixo do framework
+│
+├── api/                         # Backend: tudo que acessa o banco ou roda só no servidor
+│   ├── lib/                     # prisma.ts, auth.ts (config NextAuth), next-auth.d.ts
+│   ├── shared/enums/             # enums espelhando o schema Prisma (ex: emocao.ts)
+│   └── features/<nome>/
+│       ├── actions/              # Server Actions ('use server') — única porta de entrada ao Prisma
+│       └── schemas/, types/      # Zod schemas e tipos — contrato de dados da feature
+│
+└── web/                         # Frontend: tudo que é UI/estado de cliente
+    ├── lib/utils.ts              # cn() (shadcn)
+    ├── components/                # ui/ (shadcn), layout/, business/ (ex: RegistroCard)
+    ├── providers/                 # QueryProvider, SessionProvider, ThemeProvider
+    ├── shared/enum-maps/          # labels de UI para os enums do api/ (ex: emocao-map.ts)
+    └── features/<nome>/
+        ├── ui/<tela>/{view,hooks}/  # Componente React da tela + hooks (useForm, handlers)
+        └── data/hooks/, <feature>.keys.ts  # Hooks React Query (useQuery/useMutation) chamando as actions do api/
 ```
 
 `registro-pensamento` concentra as telas de início (`ui/inicio`), novo registro (`ui/novo`) e
 histórico (`ui/historico`) porque todas operam sobre a mesma entidade — evita import cruzado
 entre features.
+
+O `components.json` do shadcn já aponta os aliases para `@/web/components`, `@/web/lib`, etc. —
+`npx shadcn add <componente>` continua funcionando normalmente.
 
 ## Regras e Convenções
 
@@ -94,10 +92,14 @@ entre features.
 - Nunca usar `any` explícito em TypeScript.
 - Nunca usar `console.log` sem que seja solicitado.
 - **App Router** do Next.js — não usar Pages Router.
-- Componentes de UI genéricos ficam em `src/components/`, lógica de negócio em `src/features/`.
-- Nunca importar de `src/features/X` dentro de `src/features/Y` — features são independentes.
-- Toda comunicação com o banco passa por Server Action + hook React Query — nunca Prisma direto
-  no componente, nunca fetch/axios manual.
+- Componentes de UI genéricos ficam em `src/web/components/`, lógica de negócio em
+  `src/{api,web}/features/`.
+- Nunca importar de `src/{api,web}/features/X` dentro de `src/{api,web}/features/Y` — features
+  são independentes.
+- Prisma só é acessado dentro de `src/api/features/*/actions/` — nunca em componentes, nunca em
+  `src/web/`.
+- Toda comunicação com o banco passa por Server Action (`src/api/`) + hook React Query
+  (`src/web/`) — nunca Prisma direto no componente, nunca fetch/axios manual.
 - Validação de formulários **sempre** com Zod schema + `react-hook-form`. Nunca `useState` para
   controlar campos de formulário.
 - Estilos com Tailwind CSS — nunca CSS modules ou styled-components.

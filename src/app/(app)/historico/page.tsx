@@ -1,4 +1,4 @@
-import { HistoricoView } from '@/features/registro-pensamento/ui/historico/view/historico-view';
+import { HistoricoView } from '@/web/features/registro-pensamento/ui/historico/view/historico-view';
 
 import type { Metadata } from 'next';
 
