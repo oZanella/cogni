@@ -7,7 +7,7 @@ export function HistoricoView() {
   const { grupos, isLoading, vazio } = useHistorico();
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-col gap-6 px-6 pt-10 pb-6">
+    <div className="mx-auto flex w-full max-w-md flex-col gap-6 px-6 pt-6 pb-6">
       <h1 className="text-2xl font-medium text-foreground">Seu histórico</h1>
 
       {isLoading && <p className="text-sm text-muted-foreground">Carregando...</p>}

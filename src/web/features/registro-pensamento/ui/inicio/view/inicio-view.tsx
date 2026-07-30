@@ -11,7 +11,7 @@ export function InicioView() {
   const { nome, registros, isLoading } = useInicio();
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-col gap-8 px-6 pt-10 pb-6">
+    <div className="mx-auto flex w-full max-w-md flex-col gap-8 px-6 pt-6 pb-6">
       <div>
         <p className="text-sm text-muted-foreground">Olá{nome ? `, ${nome}` : ''}</p>
         <h1 className="text-2xl font-medium text-foreground">Como você está agora?</h1>
