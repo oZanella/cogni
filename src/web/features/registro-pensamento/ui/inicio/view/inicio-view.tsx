@@ -3,6 +3,7 @@
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
+import { EstadoVazio } from '@/web/components/business/estado-vazio';
 import { RegistroTimeline } from '@/web/components/business/registro-timeline';
 import { Button } from '@/web/components/ui/button';
 import { useInicio } from '@/web/features/registro-pensamento/ui/inicio/hooks/use-inicio.hook';
@@ -10,17 +11,17 @@ import { useRegistrosVisiveis } from '@/web/hooks/use-registros-visiveis/use-reg
 
 export function InicioView() {
   const { nome, registros, isLoading } = useInicio();
-  const { containerRef, medidorRef, registrosVisiveis } = useRegistrosVisiveis(registros);
+  const { containerRef, medidorRef, reservaRef, registrosVisiveis } = useRegistrosVisiveis(registros);
 
   return (
-    <div className="mx-auto flex h-full w-full max-w-md flex-col gap-5 px-6 pt-5 pb-6 md:max-w-xl">
+    <div className="mx-auto flex h-full w-full max-w-md flex-col gap-3 px-6 pt-4 pb-3 md:max-w-xl">
       <div className="min-w-0">
         <p className="line-clamp-1 text-sm wrap-break-word text-muted-foreground">Olá{nome ? `, ${nome}` : ''}</p>
         <h1 className="text-xl font-medium text-foreground">Como você está agora?</h1>
       </div>
 
       <Link href="/registro/novo">
-        <Button className="h-11 w-full gap-2 rounded-2xl text-sm shadow-sm">
+        <Button className="h-9 w-full gap-2 rounded-2xl text-sm shadow-sm">
           <Plus className="size-4" />
           Novo registro
         </Button>
@@ -32,23 +33,21 @@ export function InicioView() {
         {isLoading && <p className="text-sm text-muted-foreground">Carregando...</p>}
 
         {!isLoading && registros.length === 0 && (
-          <p className="rounded-2xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground">
-            Você ainda não fez nenhum registro. Quando quiser, comece pelo botão acima.
-          </p>
+          <EstadoVazio mensagem="Você ainda não fez nenhum registro. Quando quiser, comece pelo botão acima." />
         )}
 
         {registros.length > 0 && (
-          <div ref={containerRef} className="min-h-0 flex-1 overflow-hidden">
+          <div ref={containerRef} className="flex min-h-0 flex-1 flex-col overflow-hidden">
             <RegistroTimeline registros={registrosVisiveis} />
-          </div>
-        )}
 
-        {registros.length > 0 && (
-          <Link href="/historico" className="shrink-0 pt-2">
-            <Button variant="outline" size="sm" className="w-full">
-              Ver histórico
-            </Button>
-          </Link>
+            <div ref={reservaRef} className="shrink-0 pt-2">
+              <Link href="/historico" className="block">
+                <Button variant="outline" size="sm" className="w-full">
+                  Ver histórico
+                </Button>
+              </Link>
+            </div>
+          </div>
         )}
       </div>
 

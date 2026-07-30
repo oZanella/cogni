@@ -1,5 +1,6 @@
 'use client';
 
+import { EstadoVazio } from '@/web/components/business/estado-vazio';
 import { RegistroCard } from '@/web/components/business/registro-card';
 import { useHistorico } from '@/web/features/registro-pensamento/ui/historico/hooks/use-historico.hook';
 
@@ -12,11 +13,7 @@ export function HistoricoView() {
 
       {isLoading && <p className="text-sm text-muted-foreground">Carregando...</p>}
 
-      {vazio && (
-        <p className="rounded-2xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground">
-          Nenhum registro ainda. Seus registros aparecerão aqui.
-        </p>
-      )}
+      {vazio && <EstadoVazio mensagem="Nenhum registro ainda. Seus registros aparecerão aqui." />}
 
       <div className="flex flex-col gap-6">
         {grupos.map((grupo) => (
