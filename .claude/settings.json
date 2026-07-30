@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(fuser -k 3010/tcp)",
+      "Bash(timeout 40 bash -c 'until curl -sf http://localhost:3010 >/dev/null 2>&1; do sleep 1; done')",
+      "Bash(node test-shell.mjs)",
+      "Bash(node test-historico-scroll.mjs)"
+    ]
+  }
+}

@@ -15,7 +15,7 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="sticky top-16 hidden h-[calc(100dvh-4rem)] w-56 shrink-0 flex-col gap-6 border-r border-border px-4 py-6 md:flex">
+    <aside className="hidden h-full w-56 shrink-0 flex-col gap-6 overflow-y-auto border-r border-border px-4 py-6 md:flex">
       <nav className="flex flex-col gap-1">
         {ITENS.map((item) => {
           const ativo = pathname === item.href;

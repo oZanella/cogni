@@ -4,11 +4,11 @@ import { Sidebar } from '@/web/components/layout/sidebar';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-dvh flex-col bg-background">
+    <div className="flex h-dvh flex-col overflow-hidden bg-background">
       <Header />
-      <div className="mx-auto flex w-full flex-1 md:max-w-4xl">
+      <div className="mx-auto flex w-full min-h-0 flex-1 md:max-w-4xl">
         <Sidebar />
-        <main className="flex-1">{children}</main>
+        <main className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden">{children}</main>
       </div>
       <BottomNav />
     </div>

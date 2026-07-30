@@ -15,7 +15,7 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky bottom-0 border-t border-border bg-background/95 backdrop-blur md:hidden">
+    <nav className="shrink-0 border-t border-border bg-background/95 backdrop-blur md:hidden">
       <div className="mx-auto flex w-full max-w-md items-center justify-around px-6 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
         {ITENS.map((item) => {
           const ativo = pathname === item.href;

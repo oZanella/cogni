@@ -24,7 +24,7 @@ export function Header() {
   const inicial = nome.charAt(0).toUpperCase() || '?';
 
   return (
-    <header className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur">
+    <header className="z-10 shrink-0 border-b border-border bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-md items-center justify-between px-6 md:max-w-4xl md:px-8">
         <span className="text-lg font-medium tracking-tight text-foreground">Cogni</span>
 
