@@ -1,0 +1,13 @@
+model Usuario {
+  id    Int    @id @default(autoincrement())
+  nome  String @db.VarChar(80)
+  email String @unique @db.VarChar(120)
+  senha String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  registros RegistroPensamento[]
+
+  @@map("usuario")
+}
