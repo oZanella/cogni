@@ -11,12 +11,12 @@ const ITENS = [
   { href: '/historico', label: 'Histórico', icon: History },
 ];
 
-export function BottomNav() {
+export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky bottom-0 border-t border-border bg-background/95 backdrop-blur md:hidden">
-      <div className="mx-auto flex w-full max-w-md items-center justify-around px-6 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
+    <aside className="sticky top-16 hidden h-[calc(100dvh-4rem)] w-56 shrink-0 flex-col gap-6 border-r border-border px-4 py-6 md:flex">
+      <nav className="flex flex-col gap-1">
         {ITENS.map((item) => {
           const ativo = pathname === item.href;
           const Icon = item.icon;
@@ -26,16 +26,16 @@ export function BottomNav() {
               key={item.href}
               href={item.href}
               className={cn(
-                'flex flex-col items-center gap-1 rounded-xl px-4 py-1.5 text-xs transition-colors',
-                ativo ? 'text-primary' : 'text-muted-foreground'
+                'flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors',
+                ativo ? 'bg-secondary text-secondary-foreground' : 'text-muted-foreground hover:bg-muted'
               )}
             >
-              <Icon className="size-5" />
+              <Icon className="size-4" />
               {item.label}
             </Link>
           );
         })}
-      </div>
-    </nav>
+      </nav>
+    </aside>
   );
 }

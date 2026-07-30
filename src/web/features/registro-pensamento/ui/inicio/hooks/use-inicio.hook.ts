@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 
 import { useRegistrosPensamento } from '@/web/features/registro-pensamento/data/hooks/use-registros-pensamento.query';
 
-const LIMITE_RECENTES = 5;
+const LIMITE_RECENTES = 3;
 
 export function useInicio() {
   const { data: session } = useSession();

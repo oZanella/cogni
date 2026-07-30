@@ -11,28 +11,21 @@ export function InicioView() {
   const { nome, registros, isLoading } = useInicio();
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-col gap-8 px-6 pt-6 pb-6">
+    <div className="mx-auto flex w-full max-w-md flex-col gap-5 px-6 pt-5 pb-4 md:max-w-xl">
       <div>
         <p className="text-sm text-muted-foreground">Olá{nome ? `, ${nome}` : ''}</p>
-        <h1 className="text-2xl font-medium text-foreground">Como você está agora?</h1>
+        <h1 className="text-xl font-medium text-foreground">Como você está agora?</h1>
       </div>
 
       <Link href="/registro/novo">
-        <Button size="lg" className="h-16 w-full gap-2 rounded-3xl text-base shadow-sm">
-          <Plus className="size-5" />
+        <Button className="h-11 w-full gap-2 rounded-2xl text-sm shadow-sm">
+          <Plus className="size-4" />
           Novo registro
         </Button>
       </Link>
 
-      <div className="flex flex-col gap-3">
-        <div className="flex items-center justify-between">
-          <h2 className="text-sm font-medium text-muted-foreground">Últimas anotações</h2>
-          {registros.length > 0 && (
-            <Link href="/historico" className="text-sm text-primary underline underline-offset-4">
-              Ver tudo
-            </Link>
-          )}
-        </div>
+      <div className="flex flex-col gap-2">
+        <h2 className="text-sm font-medium text-muted-foreground">Últimas anotações</h2>
 
         {isLoading && <p className="text-sm text-muted-foreground">Carregando...</p>}
 
@@ -42,13 +35,21 @@ export function InicioView() {
           </p>
         )}
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
           {registros.map((registro) => (
             <Link key={registro.id} href="/historico">
-              <RegistroCard registro={registro} />
+              <RegistroCard registro={registro} compact />
             </Link>
           ))}
         </div>
+
+        {registros.length > 0 && (
+          <Link href="/historico">
+            <Button variant="outline" size="sm" className="w-full">
+              Ver histórico
+            </Button>
+          </Link>
+        )}
       </div>
     </div>
   );

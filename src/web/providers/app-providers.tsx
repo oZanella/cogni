@@ -8,7 +8,7 @@ import { ThemeProvider } from '@/web/providers/theme-provider';
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+    <ThemeProvider attribute="class" forcedTheme="light" disableTransitionOnChange>
       <SessionProvider>
         <QueryProvider>
           {children}
