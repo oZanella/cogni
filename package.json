@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -p 3010",
-    "build": "next build --turbopack",
+    "build": "prisma generate && prisma migrate deploy && next build --turbopack",
     "start": "next start -p 3010",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx}\"",
@@ -14,7 +14,6 @@
     "test:watch": "jest --watch",
     "prepare": "husky",
     "postinstall": "prisma generate",
-    "vercel-build": "prisma migrate deploy && next build --turbopack",
     "psm": "prisma migrate deploy && prisma generate",
     "psm:dev": "prisma migrate dev && prisma generate",
     "psm:gen": "prisma generate",
