@@ -8,10 +8,9 @@ import { Form } from '@/web/components/ui/form';
 import { Progress } from '@/web/components/ui/progress';
 import { useRegistroWizard } from '@/web/features/registro-pensamento/ui/novo/hooks/use-registro-wizard.hook';
 import { EmocoesStep } from '@/web/features/registro-pensamento/ui/novo/view/emocoes-step';
-import { PensamentoStep } from '@/web/features/registro-pensamento/ui/novo/view/pensamento-step';
 import { SituacaoStep } from '@/web/features/registro-pensamento/ui/novo/view/situacao-step';
 
-const STEPS = [SituacaoStep, EmocoesStep, PensamentoStep];
+const STEPS = [SituacaoStep, EmocoesStep];
 
 export function NovoRegistroView() {
   const { form, etapa, etapas, avancar, voltar, ehUltimaEtapa, ehPrimeiraEtapa, isPending } = useRegistroWizard();
@@ -19,8 +18,8 @@ export function NovoRegistroView() {
   const EtapaAtual = STEPS[etapa];
 
   return (
-    <div className="mx-auto flex min-h-dvh w-full max-w-md flex-col px-6 pt-6 pb-10">
-      <div className="mb-8 flex items-center gap-3">
+    <div className="mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-6 pt-6 pb-10">
+      <div className="mb-8 flex shrink-0 items-center gap-3">
         {ehPrimeiraEtapa ? (
           <Link href="/inicio" aria-label="Voltar para o início">
             <Button type="button" variant="ghost" size="icon">
@@ -39,14 +38,14 @@ export function NovoRegistroView() {
 
       <Form {...form}>
         <form
-          className="flex flex-1 flex-col justify-between gap-8"
+          className="flex min-h-0 flex-1 flex-col justify-between gap-8"
           onSubmit={(event) => {
             event.preventDefault();
           }}
         >
           <EtapaAtual />
 
-          <Button type="button" size="lg" className="h-12 text-base" onClick={avancar} disabled={isPending}>
+          <Button type="button" size="lg" className="h-12 shrink-0 text-base" onClick={avancar} disabled={isPending}>
             {ehUltimaEtapa ? (isPending ? 'Salvando...' : 'Concluir registro') : 'Continuar'}
             {!ehUltimaEtapa && <ArrowRight />}
           </Button>

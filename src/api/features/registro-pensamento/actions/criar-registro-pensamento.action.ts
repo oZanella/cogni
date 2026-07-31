@@ -17,7 +17,6 @@ export async function criarRegistroPensamento(input: RegistroPensamentoSchema) {
     data: {
       usuarioId: Number(session.user.id),
       situacao: dados.situacao,
-      pensamento: dados.pensamento,
       emocoes: {
         create: dados.emocoes.map((item) => ({
           emocao: item.emocao,

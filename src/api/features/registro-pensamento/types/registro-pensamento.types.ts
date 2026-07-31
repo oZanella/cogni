@@ -8,7 +8,6 @@ export type RegistroPensamentoEmocao = {
 export type RegistroPensamento = {
   id: number;
   situacao: string;
-  pensamento: string;
   createdAt: Date;
   emocoes: RegistroPensamentoEmocao[];
 };

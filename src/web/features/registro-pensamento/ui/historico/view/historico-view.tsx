@@ -2,6 +2,7 @@
 
 import { EstadoVazio } from '@/web/components/business/estado-vazio';
 import { RegistroCard } from '@/web/components/business/registro-card';
+import { RegistroCardSkeleton } from '@/web/components/business/registro-card-skeleton';
 import { useHistorico } from '@/web/features/registro-pensamento/ui/historico/hooks/use-historico.hook';
 
 export function HistoricoView() {
@@ -11,7 +12,14 @@ export function HistoricoView() {
     <div className="mx-auto flex w-full max-w-md flex-col gap-6 px-6 pt-6 pb-6 md:max-w-2xl">
       <h1 className="text-2xl font-medium text-foreground">Seu histórico</h1>
 
-      {isLoading && <p className="text-sm text-muted-foreground">Carregando...</p>}
+      {isLoading && (
+        <div className="flex flex-col gap-3 md:grid md:grid-cols-2 md:gap-4">
+          <RegistroCardSkeleton />
+          <RegistroCardSkeleton />
+          <RegistroCardSkeleton />
+          <RegistroCardSkeleton />
+        </div>
+      )}
 
       {vazio && <EstadoVazio mensagem="Nenhum pensamento registrado" />}
 

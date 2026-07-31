@@ -15,7 +15,6 @@ export async function listarRegistrosPensamento(limite?: number): Promise<Regist
     select: {
       id: true,
       situacao: true,
-      pensamento: true,
       createdAt: true,
       emocoes: { select: { emocao: true, intensidade: true } },
     },

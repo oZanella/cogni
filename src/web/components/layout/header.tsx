@@ -27,7 +27,7 @@ export function Header() {
   return (
     <header className="z-10 shrink-0 border-b border-border bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-16 w-full max-w-md items-center justify-between px-6 md:max-w-4xl md:px-8">
-        <span className="text-lg font-medium tracking-tight text-foreground">Cogni</span>
+        <span className="text-3xl font-semibold tracking-tight text-primary">Cogni</span>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -56,7 +56,7 @@ export function Header() {
               {email && <span className="truncate text-xs font-normal text-muted-foreground">{email}</span>}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem variant="destructive" disabled={isPending} onClick={logout}>
+            <DropdownMenuItem variant="destructive" disabled={isPending} onClick={logout} className="cursor-pointer">
               <LogOut />
               {isPending ? 'Saindo...' : 'Sair'}
             </DropdownMenuItem>

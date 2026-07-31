@@ -10,22 +10,21 @@ export function SituacaoStep() {
   const { control } = useFormContext<RegistroPensamentoSchema>();
 
   return (
-    <div className="flex flex-col gap-3">
-      <div>
+    <div className="flex min-h-0 flex-1 flex-col gap-3">
+      <div className="shrink-0">
         <p className="mb-1 text-lg font-medium">O que aconteceu?</p>
-        <p className="text-sm text-muted-foreground">Descreva a situação com suas palavras, sem pressa.</p>
+        <p className="text-sm text-muted-foreground">Descreva a situação com suas palavras, não tenha sem pressa.</p>
       </div>
       <FormField
         control={control}
         name="situacao"
         render={({ field }) => (
-          <FormItem>
-            <FormControl>
+          <FormItem className="flex min-h-0 flex-1 flex-col gap-2">
+            <FormControl className="min-h-0 flex-1">
               <Textarea
                 {...field}
-                rows={8}
-                placeholder="Ex: Recebi uma mensagem do meu chefe e comecei a me sentir mal..."
-                className="resize-none text-base"
+                placeholder="Ex: Hoje briguei com meus pais e me senti culpado..."
+                className="scrollbar-fina field-sizing-fixed h-full min-h-0 resize-none overflow-y-auto text-base"
                 autoFocus
               />
             </FormControl>

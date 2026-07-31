@@ -25,7 +25,6 @@ export async function atualizarRegistroPensamento(id: number, input: RegistroPen
       where: { id },
       data: {
         situacao: dados.situacao,
-        pensamento: dados.pensamento,
         emocoes: {
           create: dados.emocoes.map((item) => ({
             emocao: item.emocao,

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 
 import { EstadoVazio } from '@/web/components/business/estado-vazio';
+import { RegistroCardSkeleton } from '@/web/components/business/registro-card-skeleton';
 import { RegistroTimeline } from '@/web/components/business/registro-timeline';
 import { Button } from '@/web/components/ui/button';
 import { useInicio } from '@/web/features/registro-pensamento/ui/inicio/hooks/use-inicio.hook';
@@ -16,7 +17,7 @@ export function InicioView() {
     <div className="mx-auto flex h-full w-full max-w-md flex-col gap-3 px-6 pt-4 pb-3 md:max-w-xl">
       <div className="min-w-0">
         <p className="line-clamp-1 text-sm wrap-break-word text-muted-foreground">Olá{nome ? `, ${nome}` : ''}</p>
-        <h1 className="text-xl font-medium text-foreground">Como você está agora?</h1>
+        <h1 className="text-xl font-medium text-foreground">Como você está se sentindo?</h1>
       </div>
 
       <Link href="/registro/novo" className="block">
@@ -26,7 +27,12 @@ export function InicioView() {
       <div className="flex min-h-0 flex-1 flex-col gap-2">
         <h2 className="shrink-0 text-sm font-medium text-muted-foreground">Últimas anotações</h2>
 
-        {isLoading && <p className="text-sm text-muted-foreground">Carregando...</p>}
+        {isLoading && (
+          <div className="flex flex-col gap-2">
+            <RegistroCardSkeleton />
+            <RegistroCardSkeleton />
+          </div>
+        )}
 
         {!isLoading && registros.length === 0 && <EstadoVazio mensagem="Você não tem nenhum pensamento registrado!" />}
 

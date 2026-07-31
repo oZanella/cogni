@@ -13,7 +13,6 @@ export async function buscarRegistroPensamento(id: number): Promise<RegistroPens
     select: {
       id: true,
       situacao: true,
-      pensamento: true,
       createdAt: true,
       emocoes: { select: { emocao: true, intensidade: true } },
     },

@@ -15,7 +15,6 @@ import { useCriarRegistroPensamento } from '@/web/features/registro-pensamento/d
 const ETAPAS = [
   { titulo: 'Situação', campos: ['situacao'] },
   { titulo: 'Emoções', campos: ['emocoes'] },
-  { titulo: 'Pensamento', campos: ['pensamento'] },
 ] as const satisfies { titulo: string; campos: (keyof RegistroPensamentoSchema)[] }[];
 
 export function useRegistroWizard() {
@@ -24,7 +23,7 @@ export function useRegistroWizard() {
 
   const form = useForm<RegistroPensamentoSchema>({
     resolver: zodResolver(registroPensamentoSchema),
-    defaultValues: { situacao: '', emocoes: [], pensamento: '' },
+    defaultValues: { situacao: '', emocoes: [] },
   });
 
   const mutation = useCriarRegistroPensamento();

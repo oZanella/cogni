@@ -7,6 +7,12 @@ enum Emocao {
   CULPA
   FRUSTRACAO
   ALEGRIA
+  CANSACO
+  EXAUSTAO
+  SOLIDAO
+  CONFUSAO
+  ESPERANCA
+  CALMA
   OUTRO
 
   @@map("emocao")
@@ -18,8 +24,7 @@ model RegistroPensamento {
   usuarioId Int
   usuario   Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
 
-  situacao   String @db.Text
-  pensamento String @db.Text
+  situacao String @db.Text
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt

@@ -7,6 +7,14 @@ import { Badge } from '@/web/components/ui/badge';
 import { Slider } from '@/web/components/ui/slider';
 import { emocaoMap, emocaoOptions } from '@/web/shared/enum-maps/emocao-map';
 
+function emojiIntensidade(intensidade: number) {
+  if (intensidade <= 20) return '😌';
+  if (intensidade <= 40) return '🙂';
+  if (intensidade <= 60) return '😐';
+  if (intensidade <= 80) return '😟';
+  return '😰';
+}
+
 export function EmocoesStep() {
   const { control, watch, setValue, formState } = useFormContext<RegistroPensamentoSchema>();
   const { fields, append, remove } = useFieldArray({ control, name: 'emocoes' });
@@ -22,23 +30,21 @@ export function EmocoesStep() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
-      <div>
+    <div className="flex min-h-0 flex-1 flex-col gap-6">
+      <div className="shrink-0">
         <p className="mb-1 text-lg font-medium">O que você sentiu?</p>
-        <p className="text-sm text-muted-foreground">Selecione uma ou mais emoções e ajuste a intensidade.</p>
+        <p className="text-sm text-muted-foreground">Selecione uma ou mais emoções.</p>
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="grid shrink-0 grid-cols-3 gap-2">
         {emocaoOptions.map((opcao) => {
           const ativa = emocoesSelecionadas.some((item) => item.emocao === opcao.value);
           return (
-            <button
-              type="button"
-              key={opcao.value}
-              onClick={() => alternarEmocao(opcao.value)}
-              className="rounded-full"
-            >
-              <Badge variant={ativa ? 'default' : 'outline'} className="h-9 cursor-pointer px-4 text-sm">
+            <button type="button" key={opcao.value} onClick={() => alternarEmocao(opcao.value)} className="w-full">
+              <Badge
+                variant={ativa ? 'default' : 'outline'}
+                className="h-9 w-full cursor-pointer justify-center px-2 text-sm"
+              >
                 {opcao.label}
               </Badge>
             </button>
@@ -47,14 +53,16 @@ export function EmocoesStep() {
       </div>
 
       {formState.errors.emocoes?.message && (
-        <p className="text-sm text-destructive">{formState.errors.emocoes.message}</p>
+        <p className="shrink-0 text-sm text-destructive">{formState.errors.emocoes.message}</p>
       )}
 
-      <div className="flex flex-col gap-4">
+      <div className="scrollbar-fina flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto pr-1">
         {fields.map((campo, index) => (
-          <div key={campo.id} className="flex flex-col gap-2 rounded-2xl border border-border bg-card p-4">
+          <div key={campo.id} className="flex shrink-0 flex-col gap-2 rounded-2xl border border-border bg-card p-4">
             <div className="flex items-center justify-between text-sm font-medium">
-              <span>{emocaoMap[campo.emocao]}</span>
+              <span>
+                {emocaoMap[campo.emocao]} {emojiIntensidade(watch(`emocoes.${index}.intensidade`))}
+              </span>
               <span className="text-muted-foreground">{watch(`emocoes.${index}.intensidade`)}%</span>
             </div>
             <Slider
@@ -63,6 +71,10 @@ export function EmocoesStep() {
               step={5}
               onValueChange={([valor]) => setValue(`emocoes.${index}.intensidade`, valor)}
             />
+            <div className="flex justify-between text-xs font-bold">
+              <span>-</span>
+              <span>+</span>
+            </div>
           </div>
         ))}
       </div>

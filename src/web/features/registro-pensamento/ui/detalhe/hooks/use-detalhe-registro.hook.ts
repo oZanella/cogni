@@ -20,14 +20,13 @@ export function useDetalheRegistro(id: number) {
 
   const form = useForm<RegistroPensamentoSchema>({
     resolver: zodResolver(registroPensamentoSchema),
-    defaultValues: { situacao: '', emocoes: [], pensamento: '' },
+    defaultValues: { situacao: '', emocoes: [] },
   });
 
   useEffect(() => {
     if (!registro) return;
     form.reset({
       situacao: registro.situacao,
-      pensamento: registro.pensamento,
       emocoes: registro.emocoes,
     });
   }, [registro, form]);

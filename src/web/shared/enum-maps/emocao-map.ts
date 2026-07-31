@@ -9,6 +9,12 @@ export const emocaoMap: Record<Emocao, string> = {
   CULPA: 'Culpa',
   FRUSTRACAO: 'Frustração',
   ALEGRIA: 'Alegria',
+  CANSACO: 'Cansaço',
+  EXAUSTAO: 'Exaustão',
+  SOLIDAO: 'Solidão',
+  CONFUSAO: 'Confusão',
+  ESPERANCA: 'Esperança',
+  CALMA: 'Calma',
   OUTRO: 'Outro',
 };
 
