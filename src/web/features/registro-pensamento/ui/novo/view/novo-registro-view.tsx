@@ -10,11 +10,13 @@ import { useRegistroWizard } from '@/web/features/registro-pensamento/ui/novo/ho
 import { EmocoesStep } from '@/web/features/registro-pensamento/ui/novo/view/emocoes-step';
 import { SituacaoStep } from '@/web/features/registro-pensamento/ui/novo/view/situacao-step';
 
-const STEPS = [SituacaoStep, EmocoesStep];
+const STEPS_TODAS = [SituacaoStep, EmocoesStep];
 
 export function NovoRegistroView() {
-  const { form, etapa, etapas, avancar, voltar, ehUltimaEtapa, ehPrimeiraEtapa, isPending } = useRegistroWizard();
+  const { form, etapa, etapas, semDescricao, avancar, voltar, ehUltimaEtapa, ehPrimeiraEtapa, isPending } =
+    useRegistroWizard();
 
+  const STEPS = semDescricao ? STEPS_TODAS.slice(1) : STEPS_TODAS;
   const EtapaAtual = STEPS[etapa];
 
   return (

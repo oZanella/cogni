@@ -3,11 +3,24 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import type { RegistroPensamentoSchema } from '@/api/features/registro-pensamento/schemas/registro-pensamento.schemas';
+import { Emocao } from '@/api/shared/enums/emocao';
 import { Badge } from '@/web/components/ui/badge';
 import { Slider } from '@/web/components/ui/slider';
 import { emocaoMap, emocaoOptions } from '@/web/shared/enum-maps/emocao-map';
 
-function emojiIntensidade(intensidade: number) {
+const EMOCOES_POSITIVAS: Emocao[] = [Emocao.ESPERANCA, Emocao.ALEGRIA, Emocao.CALMA];
+
+function emojiIntensidade(emocao: Emocao, intensidade: number) {
+  if (emocao === Emocao.OUTRO) return '😐';
+
+  if (EMOCOES_POSITIVAS.includes(emocao)) {
+    if (intensidade <= 20) return '🙂';
+    if (intensidade <= 40) return '😊';
+    if (intensidade <= 60) return '😄';
+    if (intensidade <= 80) return '😁';
+    return '🤩';
+  }
+
   if (intensidade <= 20) return '😌';
   if (intensidade <= 40) return '🙂';
   if (intensidade <= 60) return '😐';
@@ -61,7 +74,7 @@ export function EmocoesStep() {
           <div key={campo.id} className="flex shrink-0 flex-col gap-2 rounded-2xl border border-border bg-card p-4">
             <div className="flex items-center justify-between text-sm font-medium">
               <span>
-                {emocaoMap[campo.emocao]} {emojiIntensidade(watch(`emocoes.${index}.intensidade`))}
+                {emocaoMap[campo.emocao]} {emojiIntensidade(campo.emocao, watch(`emocoes.${index}.intensidade`))}
               </span>
               <span className="text-muted-foreground">{watch(`emocoes.${index}.intensidade`)}%</span>
             </div>

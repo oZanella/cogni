@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -12,14 +12,19 @@ import {
 } from '@/api/features/registro-pensamento/schemas/registro-pensamento.schemas';
 import { useCriarRegistroPensamento } from '@/web/features/registro-pensamento/data/hooks/use-criar-registro-pensamento.mutation';
 
-const ETAPAS = [
+const ETAPAS_TODAS = [
   { titulo: 'Situação', campos: ['situacao'] },
   { titulo: 'Emoções', campos: ['emocoes'] },
 ] as const satisfies { titulo: string; campos: (keyof RegistroPensamentoSchema)[] }[];
 
 export function useRegistroWizard() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const semDescricao = searchParams.get('semDescricao') === '1';
+  const etapas = semDescricao ? ETAPAS_TODAS.slice(1) : ETAPAS_TODAS;
+
   const [etapa, setEtapa] = useState(0);
+  const [redirecionando, setRedirecionando] = useState(false);
 
   const form = useForm<RegistroPensamentoSchema>({
     resolver: zodResolver(registroPensamentoSchema),
@@ -28,10 +33,10 @@ export function useRegistroWizard() {
 
   const mutation = useCriarRegistroPensamento();
 
-  const ehUltimaEtapa = etapa === ETAPAS.length - 1;
+  const ehUltimaEtapa = etapa === etapas.length - 1;
 
   const avancar = async () => {
-    const valido = await form.trigger(ETAPAS[etapa].campos);
+    const valido = await form.trigger(etapas[etapa].campos);
     if (!valido) return;
 
     if (!ehUltimaEtapa) {
@@ -42,6 +47,7 @@ export function useRegistroWizard() {
     form.handleSubmit((data) => {
       mutation.mutate(data, {
         onSuccess: () => {
+          setRedirecionando(true);
           toast.success('Registro salvo com sucesso');
           router.push('/historico');
         },
@@ -55,11 +61,12 @@ export function useRegistroWizard() {
   return {
     form,
     etapa,
-    etapas: ETAPAS,
+    etapas,
+    semDescricao,
     avancar,
     voltar,
     ehUltimaEtapa,
     ehPrimeiraEtapa: etapa === 0,
-    isPending: mutation.isPending,
+    isPending: mutation.isPending || redirecionando,
   };
 }

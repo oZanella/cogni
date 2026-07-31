@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
@@ -12,6 +13,7 @@ import { CHAVE_LOGIN_TIMESTAMP } from '@/web/hooks/use-transformacao-borboleta/u
 
 export function useLogin() {
   const router = useRouter();
+  const [redirecionando, setRedirecionando] = useState(false);
 
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
@@ -34,6 +36,7 @@ export function useLogin() {
       if (restante > 0) await new Promise((resolve) => setTimeout(resolve, restante));
     },
     onSuccess: () => {
+      setRedirecionando(true);
       localStorage.setItem(CHAVE_LOGIN_TIMESTAMP, String(Date.now()));
       router.push('/inicio');
       router.refresh();
@@ -45,5 +48,5 @@ export function useLogin() {
 
   const onSubmit = form.handleSubmit((data) => mutation.mutate(data));
 
-  return { form, onSubmit, isPending: mutation.isPending };
+  return { form, onSubmit, isPending: mutation.isPending || redirecionando };
 }

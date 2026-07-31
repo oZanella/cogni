@@ -1,17 +1,29 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 import { EstadoVazio } from '@/web/components/business/estado-vazio';
 import { RegistroCardSkeleton } from '@/web/components/business/registro-card-skeleton';
 import { RegistroTimeline } from '@/web/components/business/registro-timeline';
 import { Button } from '@/web/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/web/components/ui/dialog';
 import { useInicio } from '@/web/features/registro-pensamento/ui/inicio/hooks/use-inicio.hook';
 import { useRegistrosVisiveis } from '@/web/hooks/use-registros-visiveis/use-registros-visiveis.hook';
 
 export function InicioView() {
+  const router = useRouter();
   const { nome, registros, isLoading } = useInicio();
   const { containerRef, medidorRef, reservaRef, registrosVisiveis } = useRegistrosVisiveis(registros);
+  const [modalAberto, setModalAberto] = useState(false);
 
   return (
     <div className="mx-auto flex h-full w-full max-w-md flex-col gap-3 px-6 pt-4 pb-3 md:max-w-xl">
@@ -20,9 +32,26 @@ export function InicioView() {
         <h1 className="text-xl font-medium text-foreground">Como você está se sentindo?</h1>
       </div>
 
-      <Link href="/registro/novo" className="block">
-        <Button className="h-9 w-full rounded-2xl text-sm shadow-sm">Novo Pensamento</Button>
-      </Link>
+      <Button className="h-9 w-full rounded-2xl text-sm shadow-sm" onClick={() => setModalAberto(true)}>
+        Novo Pensamento
+      </Button>
+
+      <Dialog open={modalAberto} onOpenChange={setModalAberto}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Deseja escrever algo hoje?</DialogTitle>
+            <DialogDescription>
+              Você pode descrever a situação com suas palavras, ou apenas para registrar um sentimento.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => router.push('/registro/novo?semDescricao=1')}>
+              Não
+            </Button>
+            <Button onClick={() => router.push('/registro/novo')}>Sim</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <div className="flex min-h-0 flex-1 flex-col gap-2">
         <h2 className="shrink-0 text-sm font-medium text-muted-foreground">Últimas anotações</h2>

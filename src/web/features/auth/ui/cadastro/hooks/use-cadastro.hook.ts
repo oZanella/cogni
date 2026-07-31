@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
@@ -13,6 +14,7 @@ import { CHAVE_LOGIN_TIMESTAMP } from '@/web/hooks/use-transformacao-borboleta/u
 
 export function useCadastro() {
   const router = useRouter();
+  const [redirecionando, setRedirecionando] = useState(false);
 
   const form = useForm<CadastroSchema>({
     resolver: zodResolver(cadastroSchema),
@@ -30,6 +32,7 @@ export function useCadastro() {
       if (resultado?.error) throw new Error('Não foi possível entrar após o cadastro');
     },
     onSuccess: () => {
+      setRedirecionando(true);
       localStorage.setItem(CHAVE_LOGIN_TIMESTAMP, String(Date.now()));
       router.push('/inicio');
       router.refresh();
@@ -41,5 +44,5 @@ export function useCadastro() {
 
   const onSubmit = form.handleSubmit((data) => mutation.mutate(data));
 
-  return { form, onSubmit, isPending: mutation.isPending };
+  return { form, onSubmit, isPending: mutation.isPending || redirecionando };
 }
