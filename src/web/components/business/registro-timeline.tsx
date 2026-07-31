@@ -22,13 +22,9 @@ export function RegistroTimeline({ registros }: { registros: RegistroPensamento[
             </div>
           </Link>
 
-          {/* espaçador depois de cada item (inclusive o último, levando até o botão): sem
-              conteúdo próprio, então pode encolher até 0 ou esticar à vontade pra preencher
-              espaço sobrando, sem nunca forçar o texto (que tem altura mínima) a ficar menor
-              do que o necessário */}
           <div className="flex min-h-0 flex-1 gap-3">
             <div className="flex w-2.5 shrink-0 justify-center">
-              <span className="w-px flex-1 bg-border" />
+              <span className="w-px bg-border" />
             </div>
             <div className="flex-1" />
           </div>

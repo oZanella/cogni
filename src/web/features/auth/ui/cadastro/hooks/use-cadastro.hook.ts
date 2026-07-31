@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 
 import { cadastrarUsuario } from '@/api/features/auth/actions/cadastrar-usuario.action';
 import { cadastroSchema, type CadastroSchema } from '@/api/features/auth/schemas/auth.schemas';
+import { CHAVE_LOGIN_TIMESTAMP } from '@/web/hooks/use-transformacao-borboleta/use-transformacao-borboleta.hook';
 
 export function useCadastro() {
   const router = useRouter();
@@ -29,6 +30,7 @@ export function useCadastro() {
       if (resultado?.error) throw new Error('Não foi possível entrar após o cadastro');
     },
     onSuccess: () => {
+      localStorage.setItem(CHAVE_LOGIN_TIMESTAMP, String(Date.now()));
       router.push('/inicio');
       router.refresh();
     },

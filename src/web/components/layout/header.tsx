@@ -3,7 +3,7 @@
 import { LogOut } from 'lucide-react';
 import { useSession } from 'next-auth/react';
 
-import { Avatar, AvatarFallback } from '@/web/components/ui/avatar';
+import { Casulo } from '@/web/components/business/criaturas';
 import { Button } from '@/web/components/ui/button';
 import {
   DropdownMenu,
@@ -14,14 +14,15 @@ import {
   DropdownMenuTrigger,
 } from '@/web/components/ui/dropdown-menu';
 import { useLogout } from '@/web/hooks/use-logout/use-logout.hook';
+import { useTransformacaoBorboleta } from '@/web/hooks/use-transformacao-borboleta/use-transformacao-borboleta.hook';
 
 export function Header() {
   const { data: session } = useSession();
   const { logout, isPending } = useLogout();
+  const estagio = useTransformacaoBorboleta();
 
   const nome = session?.user?.name ?? '';
   const email = session?.user?.email ?? '';
-  const inicial = nome.charAt(0).toUpperCase() || '?';
 
   return (
     <header className="z-10 shrink-0 border-b border-border bg-background/95 backdrop-blur">
@@ -30,10 +31,25 @@ export function Header() {
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="rounded-full" aria-label="Menu do usuário">
-              <Avatar>
-                <AvatarFallback className="bg-secondary text-secondary-foreground">{inicial}</AvatarFallback>
-              </Avatar>
+            <Button variant="ghost" size="icon" aria-label="Menu do usuário">
+              {estagio === 'casulo' && (
+                <Casulo
+                  className="origin-center animate-[formar-casulo_0.5s_ease-out_forwards]"
+                  style={{ height: 24, width: 19 }}
+                />
+              )}
+              {estagio === 'borboleta' && (
+                <span className="inline-block animate-[eclodir-borboleta_0.6s_ease-out_forwards]">
+                  <span className="inline-block origin-center text-lg animate-[bater-asas_0.6s_ease-in-out_infinite]">
+                    🦋
+                  </span>
+                </span>
+              )}
+              {estagio === null && (
+                <span className="inline-block origin-center text-lg animate-[bater-asas_0.6s_ease-in-out_infinite]">
+                  🦋
+                </span>
+              )}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">

@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
 import { loginSchema, type LoginSchema } from '@/api/features/auth/schemas/auth.schemas';
+import { CHAVE_LOGIN_TIMESTAMP } from '@/web/hooks/use-transformacao-borboleta/use-transformacao-borboleta.hook';
 
 export function useLogin() {
   const router = useRouter();
@@ -19,14 +20,21 @@ export function useLogin() {
 
   const mutation = useMutation({
     mutationFn: async (data: LoginSchema) => {
+      const inicio = Date.now();
+
       const resultado = await signIn('credentials', {
         email: data.email,
         senha: data.senha,
         redirect: false,
       });
       if (resultado?.error) throw new Error('E-mail ou senha inválidos');
+
+      // segura a resposta por um tempo mínimo pra dar tempo da animação da lagarta aparecer
+      const restante = 1500 - (Date.now() - inicio);
+      if (restante > 0) await new Promise((resolve) => setTimeout(resolve, restante));
     },
     onSuccess: () => {
+      localStorage.setItem(CHAVE_LOGIN_TIMESTAMP, String(Date.now()));
       router.push('/inicio');
       router.refresh();
     },
