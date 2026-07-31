@@ -44,8 +44,8 @@ export function LoginView() {
                 </FormItem>
               )}
             />
-            <Button type="submit" size="lg" className="mt-2 h-11" disabled={isPending}>
-              {isPending ? <Lagarta style={{ height: 20, width: 56 }} /> : 'Entrar'}
+            <Button type="submit" size="lg" className="mt-2 h-11 disabled:opacity-100" disabled={isPending}>
+              {isPending ? <Lagarta color="oklch(0.88 0.1 148)" style={{ height: 20, width: 56 }} /> : 'Entrar'}
             </Button>
           </form>
         </Form>

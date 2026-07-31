@@ -1,17 +1,25 @@
-export function Lagarta({ className, style }: { className?: string; style?: React.CSSProperties }) {
+export function Lagarta({
+  className,
+  style,
+  color = '#2f4a35',
+}: {
+  className?: string;
+  style?: React.CSSProperties;
+  color?: string;
+}) {
   const bolinhas = [0, 1, 2, 3, 4];
 
   return (
     <svg viewBox="0 0 64 24" className={className} style={style} xmlns="http://www.w3.org/2000/svg">
-      <line x1="11" y1="9" x2="8" y2="3" stroke="#2f4a35" strokeWidth="1.3" strokeLinecap="round" />
-      <line x1="15.5" y1="9" x2="13.5" y2="3" stroke="#2f4a35" strokeWidth="1.3" strokeLinecap="round" />
+      <line x1="11" y1="9" x2="8" y2="3" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
+      <line x1="15.5" y1="9" x2="13.5" y2="3" stroke={color} strokeWidth="1.3" strokeLinecap="round" />
       {bolinhas.map((i) => (
         <circle
           key={i}
           cx={12 + i * 10}
           cy="14"
           r="5"
-          fill="#2f4a35"
+          fill={color}
           style={{
             transformOrigin: `${12 + i * 10}px 14px`,
             animation: `pulsar-bolinha 1s ease-in-out ${i * 0.12}s infinite`,

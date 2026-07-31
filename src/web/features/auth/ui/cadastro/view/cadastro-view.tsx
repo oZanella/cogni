@@ -73,7 +73,7 @@ export function CadastroView() {
                 </FormItem>
               )}
             />
-            <Button type="submit" size="lg" className="mt-2 h-11" disabled={isPending}>
+            <Button type="submit" size="lg" className="mt-2 h-11 disabled:opacity-100" disabled={isPending}>
               {isPending ? 'Criando conta...' : 'Criar conta'}
             </Button>
           </form>
