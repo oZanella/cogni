@@ -38,7 +38,7 @@ export function useDetalheRegistro(id: number) {
         toast.success('Registro atualizado com sucesso');
         router.push('/historico');
       },
-      onError: () => toast.error('Não foi possível salvar as alterações'),
+      onError: (error) => toast.error(error.message || 'Não foi possível salvar as alterações'),
     });
   });
 

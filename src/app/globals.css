@@ -118,16 +118,6 @@
   --sidebar-ring: oklch(0.68 0.09 152 / 0.5);
 }
 
-@keyframes bater-asas {
-  0%,
-  100% {
-    transform: scaleX(1);
-  }
-  50% {
-    transform: scaleX(0.6);
-  }
-}
-
 @keyframes pulsar-bolinha {
   0%,
   100% {

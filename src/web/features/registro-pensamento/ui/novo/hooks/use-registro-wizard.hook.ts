@@ -46,7 +46,7 @@ export function useRegistroWizard() {
           toast.success('Registro salvo com sucesso');
           router.push('/historico');
         },
-        onError: () => toast.error('Não foi possível salvar seu registro'),
+        onError: (error) => toast.error(error.message || 'Não foi possível salvar seu registro'),
       });
     })();
   };

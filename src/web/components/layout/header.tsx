@@ -40,15 +40,13 @@ export function Header() {
               )}
               {estagio === 'borboleta' && (
                 <span className="inline-block animate-[eclodir-borboleta_0.6s_ease-out_forwards]">
-                  <span className="inline-block origin-center text-lg animate-[bater-asas_0.6s_ease-in-out_infinite]">
-                    🦋
-                  </span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/butterfly-animation.svg" alt="Borboleta" height={24} width={24} />
                 </span>
               )}
               {estagio === null && (
-                <span className="inline-block origin-center text-lg animate-[bater-asas_0.6s_ease-in-out_infinite]">
-                  🦋
-                </span>
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src="/butterfly-animation.svg" alt="Borboleta" height={24} width={24} />
               )}
             </Button>
           </DropdownMenuTrigger>
