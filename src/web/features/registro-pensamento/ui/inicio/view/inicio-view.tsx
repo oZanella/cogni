@@ -1,6 +1,5 @@
 'use client';
 
-import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
 import { EstadoVazio } from '@/web/components/business/estado-vazio';
@@ -21,10 +20,7 @@ export function InicioView() {
       </div>
 
       <Link href="/registro/novo" className="block">
-        <Button className="h-9 w-full gap-2 rounded-2xl text-sm shadow-sm">
-          <Plus className="size-4 shrink-0" strokeWidth={2.5} />
-          <span className="translate-y-0.5">Novo Pensamento</span>
-        </Button>
+        <Button className="h-9 w-full rounded-2xl text-sm shadow-sm">Novo Pensamento</Button>
       </Link>
 
       <div className="flex min-h-0 flex-1 flex-col gap-2">

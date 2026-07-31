@@ -2,6 +2,7 @@
 
 import { Toaster } from 'react-hot-toast';
 
+import { TooltipProvider } from '@/web/components/ui/tooltip';
 import { QueryProvider } from '@/web/providers/query-provider';
 import { SessionProvider } from '@/web/providers/session-provider';
 import { ThemeProvider } from '@/web/providers/theme-provider';
@@ -11,7 +12,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
     <ThemeProvider attribute="class" forcedTheme="light" disableTransitionOnChange>
       <SessionProvider>
         <QueryProvider>
-          {children}
+          <TooltipProvider>{children}</TooltipProvider>
           <Toaster
             position="top-center"
             toastOptions={{
