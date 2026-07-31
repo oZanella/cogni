@@ -20,10 +20,10 @@ export function InicioView() {
         <h1 className="text-xl font-medium text-foreground">Como você está agora?</h1>
       </div>
 
-      <Link href="/registro/novo">
+      <Link href="/registro/novo" className="block">
         <Button className="h-9 w-full gap-2 rounded-2xl text-sm shadow-sm">
-          <Plus className="size-4" />
-          Novo registro
+          <Plus className="size-4 shrink-0" strokeWidth={2.5} />
+          <span className="translate-y-0.5">Novo Pensamento</span>
         </Button>
       </Link>
 
@@ -32,9 +32,7 @@ export function InicioView() {
 
         {isLoading && <p className="text-sm text-muted-foreground">Carregando...</p>}
 
-        {!isLoading && registros.length === 0 && (
-          <EstadoVazio mensagem="Você ainda não fez nenhum registro. Quando quiser, comece pelo botão acima." />
-        )}
+        {!isLoading && registros.length === 0 && <EstadoVazio mensagem="Você não tem nenhum pensamento registrado!" />}
 
         {registros.length > 0 && (
           <div ref={containerRef} className="flex min-h-0 flex-1 flex-col overflow-hidden">

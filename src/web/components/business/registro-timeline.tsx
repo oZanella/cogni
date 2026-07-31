@@ -1,9 +1,8 @@
-import { formatDistanceToNow } from 'date-fns';
-import { ptBR } from 'date-fns/locale';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
 import type { RegistroPensamento } from '@/api/features/registro-pensamento/types/registro-pensamento.types';
+import { formatarTempoRelativo } from '@/web/lib/formatar-tempo-relativo';
 
 export function RegistroTimeline({ registros }: { registros: RegistroPensamento[] }) {
   return (
@@ -15,9 +14,7 @@ export function RegistroTimeline({ registros }: { registros: RegistroPensamento[
               <span className="mt-1.5 size-2.5 shrink-0 rounded-full bg-primary" />
             </div>
             <div className="flex min-w-0 flex-1 flex-col">
-              <span className="text-sm text-muted-foreground">
-                {formatDistanceToNow(registro.createdAt, { addSuffix: true, locale: ptBR })}
-              </span>
+              <span className="text-sm text-muted-foreground">{formatarTempoRelativo(registro.createdAt)}</span>
               <p className="line-clamp-4 min-w-0 text-base wrap-break-word text-foreground">{registro.situacao}</p>
             </div>
           </Link>

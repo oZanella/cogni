@@ -13,7 +13,7 @@ export function HistoricoView() {
 
       {isLoading && <p className="text-sm text-muted-foreground">Carregando...</p>}
 
-      {vazio && <EstadoVazio mensagem="Nenhum registro ainda. Seus registros aparecerão aqui." />}
+      {vazio && <EstadoVazio mensagem="Nenhum pensamento registrado" />}
 
       <div className="flex flex-col gap-6">
         {grupos.map((grupo) => (

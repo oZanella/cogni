@@ -2,7 +2,7 @@ import { NovoRegistroView } from '@/web/features/registro-pensamento/ui/novo/vie
 
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = { title: 'Novo registro — Cogni' };
+export const metadata: Metadata = { title: 'Novo Pensamento — Cogni' };
 
 export default function NovoRegistroPage() {
   return <NovoRegistroView />;
