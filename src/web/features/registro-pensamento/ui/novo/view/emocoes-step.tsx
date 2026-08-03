@@ -49,7 +49,7 @@ export function EmocoesStep() {
         <p className="text-sm text-muted-foreground">Selecione uma ou mais emoções para prosseguir.</p>
       </div>
 
-      <div className="grid shrink-0 grid-cols-3 gap-2">
+      <div className="grid shrink-0 grid-cols-3 gap-2 md:grid-cols-4">
         {emocaoOptions.map((opcao) => {
           const ativa = emocoesSelecionadas.some((item) => item.emocao === opcao.value);
           return (

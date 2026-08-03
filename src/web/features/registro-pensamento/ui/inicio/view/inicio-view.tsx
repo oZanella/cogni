@@ -26,7 +26,7 @@ export function InicioView() {
   const [modalAberto, setModalAberto] = useState(false);
 
   return (
-    <div className="mx-auto flex h-full w-full max-w-md flex-col gap-3 px-6 pt-4 pb-3 md:max-w-xl">
+    <div className="mx-auto flex h-full w-full max-w-md flex-col gap-3 px-6 pt-4 pb-3 md:max-w-2xl">
       <div className="min-w-0">
         <p className="line-clamp-1 text-sm wrap-break-word text-muted-foreground">Olá{nome ? `, ${nome}` : ''}</p>
         <h1 className="text-xl font-medium text-foreground">Como você está se sentindo?</h1>

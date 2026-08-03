@@ -1,6 +1,6 @@
 'use client';
 
-import { History, House } from 'lucide-react';
+import { FileText, History, House } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -12,6 +12,7 @@ import { cn } from '@/web/lib/utils';
 const ITENS = [
   { href: '/inicio', label: 'Início', icon: House },
   { href: '/historico', label: 'Histórico', icon: History },
+  { href: '/relatorio', label: 'Relatório', icon: FileText },
 ];
 
 export function Sidebar() {

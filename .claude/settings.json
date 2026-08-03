@@ -5,7 +5,18 @@
       "Bash(fuser -k 3010/tcp)",
       "Bash(timeout 40 bash -c 'until curl -sf http://localhost:3010 >/dev/null 2>&1; do sleep 1; done')",
       "Bash(node test-shell.mjs)",
-      "Bash(node test-historico-scroll.mjs)"
+      "Bash(node test-historico-scroll.mjs)",
+      "Bash(npm ls *)",
+      "Bash(npm audit *)",
+      "Bash(node -e ' *)",
+      "Bash(npx eslint *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3010/relatorio --max-time 5)",
+      "Bash(curl -s -D - -o /dev/null http://localhost:3010/relatorio --max-time 5)",
+      "Bash(grep -rn \"required_error\\\\|invalid_type_error\\\\|z.string\\({\\\\|z.date\\(\\\\|\\\\.min\\(1,\\\\|error:\" src/api/features --include=\"*.schemas.ts\")",
+      "Bash(npx shadcn@4.16.0 add calendar popover --yes)",
+      "Bash(pkill -f \"shadcn@4.16.0 add\")",
+      "Bash(npx shadcn@4.16.0 add --help)",
+      "Bash(npx shadcn@4.16.0 add calendar --yes)"
     ]
   }
 }

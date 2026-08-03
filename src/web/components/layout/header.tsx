@@ -26,7 +26,7 @@ export function Header() {
 
   return (
     <header className="z-10 shrink-0 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto flex h-16 w-full max-w-md items-center justify-between px-6 md:max-w-4xl md:px-8">
+      <div className="mx-auto flex h-16 w-full max-w-md items-center justify-between px-6 md:max-w-6xl md:px-8">
         <span className="text-3xl font-semibold tracking-tight text-primary">Cogni</span>
 
         <DropdownMenu>

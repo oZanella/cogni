@@ -20,7 +20,7 @@ export function NovoRegistroView() {
   const EtapaAtual = STEPS[etapa];
 
   return (
-    <div className="mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-6 pt-6 pb-10">
+    <div className="mx-auto flex h-dvh w-full max-w-md flex-col overflow-hidden px-6 pt-6 pb-10 md:max-w-xl">
       <div className="mb-8 flex shrink-0 items-center gap-3">
         {ehPrimeiraEtapa ? (
           <Link href="/inicio" aria-label="Voltar para o início">
