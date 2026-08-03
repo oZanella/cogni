@@ -9,9 +9,10 @@ import { Progress } from '@/web/components/ui/progress';
 import { Skeleton } from '@/web/components/ui/skeleton';
 import { useDetalheRegistro } from '@/web/features/registro-pensamento/ui/detalhe/hooks/use-detalhe-registro.hook';
 import { EmocoesStep } from '@/web/features/registro-pensamento/ui/novo/view/emocoes-step';
+import { IntensidadeStep } from '@/web/features/registro-pensamento/ui/novo/view/intensidade-step';
 import { SituacaoStep } from '@/web/features/registro-pensamento/ui/novo/view/situacao-step';
 
-const STEPS = [SituacaoStep, EmocoesStep];
+const STEPS = [SituacaoStep, EmocoesStep, IntensidadeStep];
 
 export function DetalheRegistroView({ id }: { id: number }) {
   const { form, etapa, etapas, avancar, voltar, ehUltimaEtapa, ehPrimeiraEtapa, isLoading, naoEncontrado, isPending } =

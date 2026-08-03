@@ -24,7 +24,7 @@ export function SituacaoStep() {
               <Textarea
                 {...field}
                 placeholder="Ex: Hoje briguei com meus pais e me senti culpado (a)..."
-                className="scrollbar-fina field-sizing-fixed h-full min-h-0 resize-none overflow-y-auto text-base"
+                className="papel-caderno scrollbar-fina field-sizing-fixed h-full min-h-0 resize-none overflow-y-auto bg-card pt-3 pr-3 pl-10 text-base"
                 autoFocus
               />
             </FormControl>

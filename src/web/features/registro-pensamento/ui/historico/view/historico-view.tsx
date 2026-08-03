@@ -13,7 +13,7 @@ export function HistoricoView() {
       <h1 className="text-2xl font-medium text-foreground">Seu histórico</h1>
 
       {isLoading && (
-        <div className="flex flex-col gap-3 md:grid md:grid-cols-2 md:gap-4 lg:grid-cols-3">
+        <div className="columns-2 gap-3 md:gap-4">
           <RegistroCardSkeleton />
           <RegistroCardSkeleton />
           <RegistroCardSkeleton />
@@ -27,7 +27,7 @@ export function HistoricoView() {
         {grupos.map((grupo) => (
           <div key={grupo.rotulo} className="flex flex-col gap-3">
             <h2 className="text-sm font-medium text-muted-foreground">{grupo.rotulo}</h2>
-            <div className="flex flex-col gap-3 md:grid md:grid-cols-2 md:gap-4 lg:grid-cols-3">
+            <div className="columns-2 gap-3 md:gap-4">
               {grupo.registros.map((registro) => (
                 <RegistroCard key={registro.id} registro={registro} />
               ))}

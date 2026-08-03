@@ -1,10 +1,12 @@
 'use client';
 
-import { FileText, History, House } from 'lucide-react';
+import { FileText, History, House, Users } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
+import { PapelUsuario } from '@/api/shared/enums/papel-usuario';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/web/components/ui/tooltip';
 import { useExisteRegistroPensamento } from '@/web/features/registro-pensamento/data/hooks/use-existe-registro-pensamento.query';
 import { cn } from '@/web/lib/utils';
@@ -15,15 +17,20 @@ const ITENS = [
   { href: '/relatorio', label: 'Relatório', icon: FileText },
 ];
 
+const ITEM_ADMIN = { href: '/controle-usuarios', label: 'Usuários', icon: Users };
+
 export function BottomNav() {
   const pathname = usePathname();
+  const { data: session } = useSession();
   const { data: temRegistro } = useExisteRegistroPensamento();
   const [dicaAberta, setDicaAberta] = useState(false);
+
+  const itens = session?.user?.papel === PapelUsuario.ADMIN ? [...ITENS, ITEM_ADMIN] : ITENS;
 
   return (
     <nav className="shrink-0 border-t border-border bg-background/95 backdrop-blur md:hidden">
       <div className="mx-auto flex w-full max-w-md items-center justify-around px-6 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]">
-        {ITENS.map((item) => {
+        {itens.map((item) => {
           const ativo = pathname === item.href;
           const Icon = item.icon;
           const bloqueado = item.href === '/historico' && !temRegistro;

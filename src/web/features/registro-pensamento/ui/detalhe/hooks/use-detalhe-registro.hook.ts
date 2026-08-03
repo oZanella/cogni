@@ -16,6 +16,7 @@ import { useRegistroPensamento } from '@/web/features/registro-pensamento/data/h
 const ETAPAS = [
   { titulo: 'Situação', campos: ['situacao'] },
   { titulo: 'Emoções', campos: ['emocoes'] },
+  { titulo: 'Intensidade', campos: ['emocoes'] },
 ] as const satisfies { titulo: string; campos: (keyof RegistroPensamentoSchema)[] }[];
 
 export function useDetalheRegistro(id: number) {

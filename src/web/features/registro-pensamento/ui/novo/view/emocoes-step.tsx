@@ -44,11 +44,9 @@ export function EmocoesStep() {
 
       <div className="scrollbar-fina grid min-h-0 flex-1 grid-cols-2 gap-4 overflow-y-auto pr-1">
         <div className="flex flex-col gap-2">
-          <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">Positivas</p>
           <div className="flex flex-col gap-2">{emocaoOptionsPositivas.map(renderOpcao)}</div>
         </div>
         <div className="flex flex-col gap-2">
-          <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">Negativas</p>
           <div className="flex flex-col gap-2">{emocaoOptionsNegativas.map(renderOpcao)}</div>
         </div>
       </div>

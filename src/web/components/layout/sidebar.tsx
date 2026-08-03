@@ -1,10 +1,12 @@
 'use client';
 
-import { FileText, History, House } from 'lucide-react';
+import { FileText, History, House, Users } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 
+import { PapelUsuario } from '@/api/shared/enums/papel-usuario';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/web/components/ui/tooltip';
 import { useExisteRegistroPensamento } from '@/web/features/registro-pensamento/data/hooks/use-existe-registro-pensamento.query';
 import { cn } from '@/web/lib/utils';
@@ -15,15 +17,20 @@ const ITENS = [
   { href: '/relatorio', label: 'Relatório', icon: FileText },
 ];
 
+const ITEM_ADMIN = { href: '/controle-usuarios', label: 'Usuários', icon: Users };
+
 export function Sidebar() {
   const pathname = usePathname();
+  const { data: session } = useSession();
   const { data: temRegistro } = useExisteRegistroPensamento();
   const [dicaAberta, setDicaAberta] = useState(false);
+
+  const itens = session?.user?.papel === PapelUsuario.ADMIN ? [...ITENS, ITEM_ADMIN] : ITENS;
 
   return (
     <aside className="hidden h-full w-56 shrink-0 flex-col gap-6 overflow-y-auto border-r border-border px-4 py-6 md:flex">
       <nav className="flex flex-col gap-1">
-        {ITENS.map((item) => {
+        {itens.map((item) => {
           const ativo = pathname === item.href;
           const Icon = item.icon;
           const bloqueado = item.href === '/historico' && !temRegistro;

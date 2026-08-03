@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "for p in $(lsof -ti:3010 2>/dev/null); do kill -9 $(ps -o ppid= -p $p 2>/dev/null) $p 2>/dev/null; done; true",
+    "predev": "ss -ltnp 'sport = :3010' 2>/dev/null | grep -oP 'pid=\\K[0-9]+' | xargs -r kill -9; true",
     "dev": "next dev --turbopack -p 3010",
     "build": "prisma generate && prisma migrate deploy && next build --turbopack",
     "start": "next start -p 3010",

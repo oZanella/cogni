@@ -26,7 +26,6 @@ export const emocaoMap: Record<Emocao, string> = {
   OUTRO: 'Outro',
 };
 
-/** Emoções de valência positiva — exibidas na coluna esquerda do seletor. */
 export const EMOCOES_POSITIVAS: Emocao[] = [
   Emocao.GRATIDAO,
   Emocao.EMPOLGACAO,
@@ -41,7 +40,6 @@ export const EMOCOES_POSITIVAS: Emocao[] = [
   Emocao.CALMA,
 ];
 
-/** Emoções de valência negativa — exibidas na coluna direita do seletor. */
 export const EMOCOES_NEGATIVAS: Emocao[] = [
   Emocao.ANSIEDADE,
   Emocao.TRISTEZA,
