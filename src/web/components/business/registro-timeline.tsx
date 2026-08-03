@@ -2,7 +2,9 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 
 import type { RegistroPensamento } from '@/api/features/registro-pensamento/types/registro-pensamento.types';
+import { Badge } from '@/web/components/ui/badge';
 import { formatarTempoRelativo } from '@/web/lib/formatar-tempo-relativo';
+import { emocaoMap } from '@/web/shared/enum-maps/emocao-map';
 
 export function RegistroTimeline({ registros }: { registros: RegistroPensamento[] }) {
   return (
@@ -15,7 +17,17 @@ export function RegistroTimeline({ registros }: { registros: RegistroPensamento[
             </div>
             <div className="flex min-w-0 flex-1 flex-col">
               <span className="text-sm text-muted-foreground">{formatarTempoRelativo(registro.createdAt)}</span>
-              <p className="line-clamp-4 min-w-0 text-base wrap-break-word text-foreground">{registro.situacao}</p>
+              {registro.situacao ? (
+                <p className="line-clamp-4 min-w-0 text-base wrap-break-word text-foreground">{registro.situacao}</p>
+              ) : (
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  {registro.emocoes.map((item, index) => (
+                    <Badge key={index} variant="secondary" className="font-normal">
+                      {emocaoMap[item.emocao]}
+                    </Badge>
+                  ))}
+                </div>
+              )}
             </div>
           </Link>
 

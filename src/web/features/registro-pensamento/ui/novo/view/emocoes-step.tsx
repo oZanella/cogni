@@ -46,7 +46,7 @@ export function EmocoesStep() {
     <div className="flex min-h-0 flex-1 flex-col gap-6">
       <div className="shrink-0">
         <p className="mb-1 text-lg font-medium">O que você sentiu?</p>
-        <p className="text-sm text-muted-foreground">Selecione uma ou mais emoções.</p>
+        <p className="text-sm text-muted-foreground">Selecione uma ou mais emoções para prosseguir.</p>
       </div>
 
       <div className="grid shrink-0 grid-cols-3 gap-2">
@@ -69,7 +69,7 @@ export function EmocoesStep() {
         <p className="shrink-0 text-sm text-destructive">{formState.errors.emocoes.message}</p>
       )}
 
-      <div className="scrollbar-fina flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto pr-1">
+      <div className="scrollbar-fina flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto pr-1">
         {fields.map((campo, index) => (
           <div key={campo.id} className="flex shrink-0 flex-col gap-2 rounded-2xl border border-border bg-card p-4">
             <div className="flex items-center justify-between text-sm font-medium">

@@ -42,7 +42,12 @@ export function useDetalheRegistro(id: number) {
 
   const avancar = async () => {
     const valido = await form.trigger(ETAPAS[etapa].campos);
-    if (!valido) return;
+    if (!valido) {
+      if ((ETAPAS[etapa].campos as readonly string[]).includes('emocoes')) {
+        toast.error('Selecione um sentimento');
+      }
+      return;
+    }
 
     if (!ehUltimaEtapa) {
       setEtapa((atual) => atual + 1);

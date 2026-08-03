@@ -37,7 +37,12 @@ export function useRegistroWizard() {
 
   const avancar = async () => {
     const valido = await form.trigger(etapas[etapa].campos);
-    if (!valido) return;
+    if (!valido) {
+      if ((etapas[etapa].campos as readonly string[]).includes('emocoes')) {
+        toast.error('Selecione um sentimento');
+      }
+      return;
+    }
 
     if (!ehUltimaEtapa) {
       setEtapa((atual) => atual + 1);
