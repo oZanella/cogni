@@ -8,9 +8,10 @@ import { Form } from '@/web/components/ui/form';
 import { Progress } from '@/web/components/ui/progress';
 import { useRegistroWizard } from '@/web/features/registro-pensamento/ui/novo/hooks/use-registro-wizard.hook';
 import { EmocoesStep } from '@/web/features/registro-pensamento/ui/novo/view/emocoes-step';
+import { IntensidadeStep } from '@/web/features/registro-pensamento/ui/novo/view/intensidade-step';
 import { SituacaoStep } from '@/web/features/registro-pensamento/ui/novo/view/situacao-step';
 
-const STEPS_TODAS = [SituacaoStep, EmocoesStep];
+const STEPS_TODAS = [SituacaoStep, EmocoesStep, IntensidadeStep];
 
 export function NovoRegistroView() {
   const { form, etapa, etapas, semDescricao, avancar, voltar, ehUltimaEtapa, ehPrimeiraEtapa, isPending } =

@@ -1,5 +1,6 @@
 enum Emocao {
   ANSIEDADE
+  GRATIDAO
   TRISTEZA
   RAIVA
   MEDO
@@ -14,6 +15,13 @@ enum Emocao {
   ESPERANCA
   CALMA
   OUTRO
+  EMPOLGACAO
+  ORGULHO
+  SATISFACAO
+  ALIVIO
+  AMOR
+  CONFIANCA
+  ENTUSIASMO
 
   @@map("emocao")
 }

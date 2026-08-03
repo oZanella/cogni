@@ -1,5 +1,6 @@
 export const Emocao = {
   ANSIEDADE: 'ANSIEDADE',
+  GRATIDAO: 'GRATIDAO',
   TRISTEZA: 'TRISTEZA',
   RAIVA: 'RAIVA',
   MEDO: 'MEDO',
@@ -14,6 +15,13 @@ export const Emocao = {
   ESPERANCA: 'ESPERANCA',
   CALMA: 'CALMA',
   OUTRO: 'OUTRO',
+  EMPOLGACAO: 'EMPOLGACAO',
+  ORGULHO: 'ORGULHO',
+  SATISFACAO: 'SATISFACAO',
+  ALIVIO: 'ALIVIO',
+  AMOR: 'AMOR',
+  CONFIANCA: 'CONFIANCA',
+  ENTUSIASMO: 'ENTUSIASMO',
 } as const;
 
 export type Emocao = (typeof Emocao)[keyof typeof Emocao];

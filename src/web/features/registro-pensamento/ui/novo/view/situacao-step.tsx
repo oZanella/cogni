@@ -23,7 +23,7 @@ export function SituacaoStep() {
             <FormControl className="min-h-0 flex-1">
               <Textarea
                 {...field}
-                placeholder="Ex: Hoje briguei com meus pais e me senti culpado..."
+                placeholder="Ex: Hoje briguei com meus pais e me senti culpado (a)..."
                 className="scrollbar-fina field-sizing-fixed h-full min-h-0 resize-none overflow-y-auto text-base"
                 autoFocus
               />

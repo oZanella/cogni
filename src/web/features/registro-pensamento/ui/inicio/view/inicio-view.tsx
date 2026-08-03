@@ -37,14 +37,14 @@ export function InicioView() {
       </Button>
 
       <Dialog open={modalAberto} onOpenChange={setModalAberto}>
-        <DialogContent>
+        <DialogContent className="md:max-w-md md:p-6">
           <DialogHeader>
-            <DialogTitle>Deseja escrever algo hoje?</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="md:text-lg">Deseja escrever algo hoje?</DialogTitle>
+            <DialogDescription className="md:text-base">
               Você pode descrever a situação com suas palavras, ou apenas para registrar um sentimento.
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter>
+          <DialogFooter className="md:-mx-6 md:-mb-6 md:p-6">
             <Button variant="outline" onClick={() => router.push('/registro/novo?semDescricao=1')}>
               Não
             </Button>
