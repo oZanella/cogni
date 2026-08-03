@@ -12,7 +12,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
       credentials: {
-        email: {},
+        nomeUsuario: {},
         senha: {},
       },
       authorize: async (credentials) => {
@@ -20,7 +20,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!parsed.success) return null;
 
         const usuario = await prisma.usuario.findUnique({
-          where: { email: parsed.data.email },
+          where: { nomeUsuario: parsed.data.nomeUsuario.trim().toLowerCase() },
         });
         if (!usuario) return null;
 

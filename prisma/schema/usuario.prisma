@@ -6,10 +6,11 @@ enum PapelUsuario {
 }
 
 model Usuario {
-  id    Int    @id @default(autoincrement())
-  nome  String @db.VarChar(80)
-  email String @unique @db.VarChar(120)
-  senha String
+  id          Int     @id @default(autoincrement())
+  nome        String  @db.VarChar(80)
+  nomeUsuario String  @unique @db.VarChar(30)
+  email       String  @unique @db.VarChar(120)
+  senha       String
 
   papel          PapelUsuario @default(PACIENTE)
   acessoExpiraEm DateTime?

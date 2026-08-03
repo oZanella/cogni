@@ -17,7 +17,7 @@ export function useLogin() {
 
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
-    defaultValues: { email: '', senha: '' },
+    defaultValues: { nomeUsuario: '', senha: '' },
   });
 
   const mutation = useMutation({
@@ -25,11 +25,11 @@ export function useLogin() {
       const inicio = Date.now();
 
       const resultado = await signIn('credentials', {
-        email: data.email,
+        nomeUsuario: data.nomeUsuario,
         senha: data.senha,
         redirect: false,
       });
-      if (resultado?.error) throw new Error('E-mail ou senha inválidos');
+      if (resultado?.error) throw new Error('Nome de usuário ou senha inválidos');
 
       // segura a resposta por um tempo mínimo pra dar tempo da animação da lagarta aparecer
       const restante = 1500 - (Date.now() - inicio);

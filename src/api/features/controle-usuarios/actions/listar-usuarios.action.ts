@@ -14,6 +14,7 @@ export async function listarUsuarios(): Promise<UsuarioAdmin[]> {
     select: {
       id: true,
       nome: true,
+      nomeUsuario: true,
       email: true,
       papel: true,
       acessoExpiraEm: true,

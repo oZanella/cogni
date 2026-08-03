@@ -8,7 +8,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <Header />
       <div className="mx-auto flex w-full min-h-0 flex-1 md:max-w-6xl">
         <Sidebar />
-        <main className="flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden">{children}</main>
+        <main className="scrollbar-fina flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden">
+          {children}
+        </main>
       </div>
       <BottomNav />
     </div>

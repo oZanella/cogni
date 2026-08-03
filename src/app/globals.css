@@ -185,6 +185,8 @@
     --papel-caderno-linha: 1.75rem;
     /* distância entre a base do texto (baseline) e o fim da caixa da linha */
     --papel-caderno-base: 0.5rem;
+    font-family: var(--font-caderno), cursive;
+    color: var(--muted-foreground);
     line-height: var(--papel-caderno-linha);
     background-origin:
       padding-box,

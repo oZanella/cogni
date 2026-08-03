@@ -34,12 +34,25 @@ export function CadastroView() {
             />
             <FormField
               control={form.control}
+              name="nomeUsuario"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <FloatingLabelInput label="Nome de usuário" autoComplete="username" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
                     <FloatingLabelInput label="E-mail" type="email" autoComplete="email" {...field} />
                   </FormControl>
+                  <p className="text-xs text-muted-foreground">Usado apenas para contato, não para entrar no app.</p>
                   <FormMessage />
                 </FormItem>
               )}

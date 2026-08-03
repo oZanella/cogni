@@ -18,14 +18,14 @@ export function useCadastro() {
 
   const form = useForm<CadastroSchema>({
     resolver: zodResolver(cadastroSchema),
-    defaultValues: { nome: '', email: '', senha: '', confirmarSenha: '' },
+    defaultValues: { nome: '', nomeUsuario: '', email: '', senha: '', confirmarSenha: '' },
   });
 
   const mutation = useMutation({
     mutationFn: async (data: CadastroSchema) => {
       await cadastrarUsuario(data);
       const resultado = await signIn('credentials', {
-        email: data.email,
+        nomeUsuario: data.nomeUsuario,
         senha: data.senha,
         redirect: false,
       });

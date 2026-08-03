@@ -1,5 +1,5 @@
 import { Analytics } from '@vercel/analytics/next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist, Geist_Mono, Kalam } from 'next/font/google';
 
 import { AppProviders } from '@/web/providers/app-providers';
 
@@ -17,6 +17,12 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+const kalam = Kalam({
+  variable: '--font-caderno',
+  subsets: ['latin'],
+  weight: ['400', '700'],
+});
+
 export const metadata: Metadata = {
   title: 'Cogni — Registro de Pensamentos',
   description: 'Registre o que você sentiu e organize seus pensamentos para compartilhar com sua psicóloga.',
@@ -32,7 +38,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${kalam.variable} antialiased`}>
         <AppProviders>{children}</AppProviders>
         <Analytics />
       </body>

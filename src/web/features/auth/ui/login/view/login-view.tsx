@@ -22,11 +22,11 @@ export function LoginView() {
           <form onSubmit={onSubmit} className="flex flex-col gap-4">
             <FormField
               control={form.control}
-              name="email"
+              name="nomeUsuario"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <FloatingLabelInput label="E-mail" type="email" autoComplete="email" {...field} />
+                    <FloatingLabelInput label="Nome de usuário" autoComplete="username" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
