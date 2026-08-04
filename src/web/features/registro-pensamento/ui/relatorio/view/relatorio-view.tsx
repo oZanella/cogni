@@ -28,88 +28,90 @@ export function RelatorioView() {
 
       <Form {...form}>
         <form onSubmit={gerarRelatorio} className="flex flex-col gap-4">
-          <FormField
-            control={form.control}
-            name="dataInicio"
-            render={({ field }) => (
-              <FormItem className="flex flex-col gap-2">
-                <Popover open={dataInicioAberta} onOpenChange={setDataInicioAberta}>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        className={cn(
-                          'h-11 w-full cursor-pointer justify-start text-left font-normal',
-                          !field.value && 'text-muted-foreground'
-                        )}
-                      >
-                        <CalendarIcon className="size-4" />
-                        {field.value
-                          ? format(parse(field.value, 'yyyy-MM-dd', new Date()), "d 'de' MMMM 'de' yyyy", {
-                              locale: ptBR,
-                            })
-                          : 'Data início'}
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      locale={ptBR}
-                      selected={field.value ? parse(field.value, 'yyyy-MM-dd', new Date()) : undefined}
-                      onSelect={(data) => {
-                        field.onChange(data ? format(data, 'yyyy-MM-dd') : '');
-                        setDataInicioAberta(false);
-                      }}
-                    />
-                  </PopoverContent>
-                </Popover>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="dataFim"
-            render={({ field }) => (
-              <FormItem className="flex flex-col gap-2">
-                <Popover open={dataFimAberta} onOpenChange={setDataFimAberta}>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        className={cn(
-                          'h-11 w-full cursor-pointer justify-start text-left font-normal',
-                          !field.value && 'text-muted-foreground'
-                        )}
-                      >
-                        <CalendarIcon className="size-4" />
-                        {field.value
-                          ? format(parse(field.value, 'yyyy-MM-dd', new Date()), "d 'de' MMMM 'de' yyyy", {
-                              locale: ptBR,
-                            })
-                          : 'Data fim'}
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <Calendar
-                      mode="single"
-                      locale={ptBR}
-                      selected={field.value ? parse(field.value, 'yyyy-MM-dd', new Date()) : undefined}
-                      onSelect={(data) => {
-                        field.onChange(data ? format(data, 'yyyy-MM-dd') : '');
-                        setDataFimAberta(false);
-                      }}
-                    />
-                  </PopoverContent>
-                </Popover>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex flex-col gap-4 md:flex-row">
+            <FormField
+              control={form.control}
+              name="dataInicio"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-2 md:flex-1">
+                  <Popover open={dataInicioAberta} onOpenChange={setDataInicioAberta}>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className={cn(
+                            'h-11 w-full cursor-pointer justify-start text-left font-normal',
+                            !field.value && 'text-muted-foreground'
+                          )}
+                        >
+                          <CalendarIcon className="size-4" />
+                          {field.value
+                            ? format(parse(field.value, 'yyyy-MM-dd', new Date()), "d 'de' MMMM 'de' yyyy", {
+                                locale: ptBR,
+                              })
+                            : 'Data início'}
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        locale={ptBR}
+                        selected={field.value ? parse(field.value, 'yyyy-MM-dd', new Date()) : undefined}
+                        onSelect={(data) => {
+                          field.onChange(data ? format(data, 'yyyy-MM-dd') : '');
+                          setDataInicioAberta(false);
+                        }}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="dataFim"
+              render={({ field }) => (
+                <FormItem className="flex flex-col gap-2 md:flex-1">
+                  <Popover open={dataFimAberta} onOpenChange={setDataFimAberta}>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          className={cn(
+                            'h-11 w-full cursor-pointer justify-start text-left font-normal',
+                            !field.value && 'text-muted-foreground'
+                          )}
+                        >
+                          <CalendarIcon className="size-4" />
+                          {field.value
+                            ? format(parse(field.value, 'yyyy-MM-dd', new Date()), "d 'de' MMMM 'de' yyyy", {
+                                locale: ptBR,
+                              })
+                            : 'Data fim'}
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0">
+                      <Calendar
+                        mode="single"
+                        locale={ptBR}
+                        selected={field.value ? parse(field.value, 'yyyy-MM-dd', new Date()) : undefined}
+                        onSelect={(data) => {
+                          field.onChange(data ? format(data, 'yyyy-MM-dd') : '');
+                          setDataFimAberta(false);
+                        }}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
           <Button type="submit" size="lg" className="mt-2 h-11 cursor-pointer" disabled={isPending}>
             {isPending ? <Loader2 className="size-4 animate-spin" /> : 'Gerar relatório'}
           </Button>

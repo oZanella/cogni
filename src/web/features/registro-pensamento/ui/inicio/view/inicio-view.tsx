@@ -44,11 +44,17 @@ export function InicioView() {
               Você pode descrever a situação com suas palavras, ou apenas para registrar um sentimento.
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter className="md:-mx-6 md:-mb-6 md:p-6">
-            <Button variant="outline" onClick={() => router.push('/registro/novo?semDescricao=1')}>
+          <DialogFooter className="gap-3 md:-mx-6 md:-mb-6 md:p-6">
+            <Button
+              variant="outline"
+              className="h-11 sm:flex-1"
+              onClick={() => router.push('/registro/novo?semDescricao=1')}
+            >
               Não
             </Button>
-            <Button onClick={() => router.push('/registro/novo')}>Sim</Button>
+            <Button className="h-11 sm:flex-1" onClick={() => router.push('/registro/novo')}>
+              Sim
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
