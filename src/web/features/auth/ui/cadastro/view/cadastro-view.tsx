@@ -52,7 +52,6 @@ export function CadastroView() {
                   <FormControl>
                     <FloatingLabelInput label="E-mail" type="email" autoComplete="email" {...field} />
                   </FormControl>
-                  <p className="text-xs text-muted-foreground">Usado apenas para contato, não para entrar no app.</p>
                   <FormMessage />
                 </FormItem>
               )}
